@@ -1,6 +1,7 @@
 # 算法成长 LeetCode By Go
+
 ## 数据结构实现
-###链表
+### 链表
 - [单链表](dataStructure/linkedList/singly.go)
 - [双向链表]()
 

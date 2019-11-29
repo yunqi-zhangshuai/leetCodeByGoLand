@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-//单项链表实现操作
-
+//单向链表实现操作
+singlyLinkList()
+//双向链表实现操作
 }
 
 func singlyLinkList() {
