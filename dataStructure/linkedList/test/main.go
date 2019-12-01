@@ -1,14 +1,18 @@
 package main
 
 import (
-	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
+	"fmt"
 	"leetCodeByGoLand/dataStructure/linkedList"
 )
 
 func main() {
-//单向链表实现操作
-singlyLinkList()
-//双向链表实现操作
+	//单向链表实现操作
+	//singlyLinkList()
+	//双向链表实现操作
+	double := linkedList.Double{}
+	double.AppendNode(1,3,4567)
+	double.Traverse()
+
 }
 
 func singlyLinkList() {
