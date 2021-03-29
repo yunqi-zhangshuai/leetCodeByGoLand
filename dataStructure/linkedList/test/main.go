@@ -10,7 +10,7 @@ func main() {
 	//singlyLinkList()
 	//双向链表实现操作
 	double := linkedList.Double{}
-	double.AppendNode(1,3,4567)
+	double.AppendNode(1, 3, 4, 5, 6, 7)
 	double.Traverse()
 
 }

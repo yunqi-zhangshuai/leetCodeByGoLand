@@ -44,3 +44,24 @@ func (l *Double) Traverse() {
 		cur = cur.Pre
 	}
 }
+
+func (l *Double) InsertNode(value interface{}, size int) {
+
+	cur := l.head
+	newNode := &Node2{Data: value}
+
+	var csize = 0
+	for cur.Next != nil {
+		if csize == size {
+			newNode.Pre = cur
+			newNode.Next = cur.Next
+			cur.Next.Pre = newNode
+			break
+		}
+
+		cur = cur.Next
+
+		csize++
+	}
+
+}
