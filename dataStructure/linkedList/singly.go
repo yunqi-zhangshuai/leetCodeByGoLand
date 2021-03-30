@@ -43,9 +43,9 @@ func (l *SinglyLinkList) Traverse(p *Node) {
 	} else {
 		cur = p
 	}
-	for cur.Next != nil {
-		cur = cur.Next
+	for cur != nil {
 		fmt.Println("当前节点数据是---", cur.Data)
+		cur = cur.Next
 	}
 }
 
