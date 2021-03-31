@@ -20,7 +20,37 @@ func main() {
 	}
 	list.Traverse(head)
 	fmt.Println("---------------------")
-	list.Traverse(reverseList(head))
+	// 迭代法
+	//list.Traverse(reverseList1(head))
+	// 数组法
+	p := reverseListByArray(head)
+	for p != nil {
+		fmt.Println(p.Data)
+		p = p.Next
+	}
+	return
+	list.Traverse(reverseListByArray(head))
+}
+
+// 数组法反转链表,将链表遍历放到数组里,然后倒序遍历数组,串联链表
+func reverseListByArray(head *linkedList.Node) *linkedList.Node {
+	cur := head
+	nodes := make([]*linkedList.Node, 0)
+	for cur != nil {
+		nodes = append(nodes, cur)
+		cur = cur.Next
+	}
+
+	node := nodes[4]
+	nodes[0].Next = nil
+	p := node
+
+	for i := 3; i >= 0; i-- {
+		p.Next = nodes[i]
+		p = p.Next
+	}
+
+	return node
 }
 
 // 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
@@ -48,7 +78,7 @@ func main() {
  *     Next *ListNode
  * }
  */
-func reverseList(head *linkedList.Node) *linkedList.Node {
+func reverseList1(head *linkedList.Node) *linkedList.Node {
 
 	cur := head
 	var pre, tmp *linkedList.Node
