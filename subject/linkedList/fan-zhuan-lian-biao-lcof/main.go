@@ -14,7 +14,7 @@ func main() {
 	for i := 0; i < 5; i++ {
 		node := &linkedList.Node{Data: i}
 		if head == nil {
-			head = node
+			head = node // 注释
 		}
 		list.Append(node)
 	}
