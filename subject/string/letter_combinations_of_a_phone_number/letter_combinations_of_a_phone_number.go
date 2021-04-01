@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package letter_combinations_of_a_phone_number
 
 /*
  * @lc app=leetcode.cn id=17 lang=golang
@@ -61,11 +57,6 @@ func letterCombinations(digits string) []string {
 }
 
 // @lc code=end
-
-func main() {
-	combinations := letterCombinations("4257")
-	fmt.Println(combinations)
-}
 
 func dfs(strMap [][]string, start int, digits string, result *[]string, ans string) {
 	if start == len(digits) {
