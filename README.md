@@ -19,8 +19,8 @@
 ## 算法练习
 #### [数组](subject/Array)
 
-- [两数之和](subject/Array/TwoSum.go)
+- [两数之和](subject/Array/two_sum/two_sum.go)
 
 #### [字符串](subject/string)
 
-- [电话号码字母组合](subject/string/电话号码字母组合.go)
+- [电话号码字母组合](subject/string/letter_combinations_of_a_phone_number/letter_combinations_of_a_phone_number.go)
