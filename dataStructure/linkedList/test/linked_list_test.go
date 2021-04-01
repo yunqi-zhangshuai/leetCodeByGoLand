@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"leetCodeByGoLand/dataStructure/linkedList"
 	"testing"
 )
@@ -34,4 +35,23 @@ func singlyLinkList(t *testing.T) {
 	list.RemoveNode(4)
 	t.Log("-------------------------删除某个节点遍历-----------------------------")
 	list.Traverse(nil)
+}
+
+func TestSingleList(t *testing.T) {
+	list := linkedList.SingleList{}
+	node := linkedList.NewSingleNode(1)
+	list.Append(node)
+	node1 := linkedList.NewSingleNode(2)
+	list.Append(node1)
+	head := list.GetHead()
+
+	p := head
+
+	for p != nil {
+		fmt.Println(p.Item)
+		p = p.Next
+	}
+
+	fmt.Println(list.GetTail().Item)
+
 }
