@@ -22,12 +22,12 @@ func singlyLinkList(t *testing.T) {
 	list := &linkedList.SinglyLinkList{}
 
 	for i := 0; i < 10; i++ {
-		list.Append(&linkedList.Node{i, nil})
+		list.Append(&linkedList.Node{Data: i})
 	}
 	t.Log("------------------------后续追加遍历-------------------------------")
 
-	list.Traverse(nil)                                 //遍历链表
-	list.BeforeInsert(&linkedList.Node{"www", nil}, 5) //在第几个之前插入链表
+	list.Traverse(nil)                                  //遍历链表
+	list.BeforeInsert(&linkedList.Node{Data: "www"}, 5) //在第几个之前插入链表
 	t.Log("------------------------节点之前插入遍历------------------------------")
 
 	list.Traverse(nil)
