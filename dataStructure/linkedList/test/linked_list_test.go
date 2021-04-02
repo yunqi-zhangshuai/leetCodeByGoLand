@@ -37,21 +37,26 @@ func singlyLinkList(t *testing.T) {
 	list.Traverse(nil)
 }
 
+// 单链表创建,追加节点,删除节点,遍历,在指定位置
 func TestSingleList(t *testing.T) {
 	list := linkedList.SingleList{}
-	node := linkedList.NewSingleNode(1)
-	list.Append(node)
-	node1 := linkedList.NewSingleNode(2)
-	list.Append(node1)
-	head := list.GetHead()
-
-	p := head
-
-	for p != nil {
-		fmt.Println(p.Item)
-		p = p.Next
+	for i := 0; i < 10; i++ {
+		list.Append(linkedList.NewSingleNode(i))
 	}
 
-	fmt.Println(list.GetTail().Item)
+	f := func(curNode *linkedList.SingleNode) {
+		fmt.Println(curNode.Item)
+	}
+	list.Iterate(f)
+
+	var position uint32 = 1
+	_, err := list.RemoveNode(position)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("删除%d节点\n", position)
+	list.Iterate(f)
+	fmt.Println("链表尾节点-----", list.GetTail().Item)
 
 }

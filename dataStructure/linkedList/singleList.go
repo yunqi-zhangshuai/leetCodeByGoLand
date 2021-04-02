@@ -1,5 +1,10 @@
 package linkedList
 
+import (
+	"errors"
+	"fmt"
+)
+
 // SingleNode
 // 链表节点
 type SingleNode struct {
@@ -51,17 +56,33 @@ func (l *SingleList) GetTail() *SingleNode {
 
 // RemoveNode
 // 删除指定位置链表节点
-func (l *SingleList) RemoveNode(num uint32) (bool, error) {
+func (l *SingleList) RemoveNode(position uint32) (bool, error) {
 
+	if position > l.size {
+		return false, errors.New(fmt.Sprintf(
+			"超过了链表的长度 %d", l.size,
+		))
+	}
 	curNode := l.head
+
+	if position == 1 {
+		tmp := l.head
+		l.head = tmp.Next
+		tmp = nil
+		l.size--
+		return true, nil
+	}
 
 	var index uint32
 	for curNode != nil {
 		index++
-		if index == num {
-
+		if index == position {
+			tmpNext := curNode.Next
+			curNode.Next = tmpNext.Next
+			tmpNext = nil
+			l.size--
+			break
 		}
-
 		curNode = curNode.Next
 	}
 
@@ -86,5 +107,16 @@ func (l *SingleList) Length() uint32 {
 func (l *SingleList) BatchAppend(nodes ...*SingleNode) {
 	for _, node := range nodes {
 		l.Append(node)
+	}
+}
+
+// Iterate
+// 迭代
+func (l *SingleList) Iterate(f func(curNode *SingleNode)) {
+
+	curNode := l.head
+	for curNode != nil {
+		f(curNode)
+		curNode = curNode.Next
 	}
 }
