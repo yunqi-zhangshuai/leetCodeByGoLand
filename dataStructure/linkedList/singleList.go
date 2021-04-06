@@ -92,6 +92,23 @@ func (l *SingleList) RemoveNode(position uint32) (bool, error) {
 // InsertNode
 // 指定位置插入节点
 func (l *SingleList) InsertNode(sort uint32, node *SingleNode) (bool, error) {
+	cur := l.head
+
+	if sort < 1 || sort > l.size {
+		return false, errors.New(fmt.Sprintf("sort %d 边界错误", sort))
+	}
+	var index uint32
+	for cur != nil {
+		index++
+		if index == sort {
+			tmpNext := cur.Next.Next
+			cur.Next = node
+			cur.Next.Next = tmpNext
+			l.size++
+			return true, nil
+		}
+		cur = cur.Next
+	}
 
 	return true, nil
 }

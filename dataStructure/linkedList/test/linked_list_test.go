@@ -59,4 +59,12 @@ func TestSingleList(t *testing.T) {
 	list.Iterate(f)
 	fmt.Println("链表尾节点-----", list.GetTail().Item)
 
+	// 指定位置插入节点
+	fmt.Println("-------指定在第三节点位置插入数据------")
+	list.InsertNode(3, &linkedList.SingleNode{
+		Item: 98,
+	})
+
+	list.Iterate(f)
+
 }
