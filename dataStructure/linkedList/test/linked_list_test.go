@@ -37,7 +37,7 @@ func singlyLinkList(t *testing.T) {
 	list.Traverse(nil)
 }
 
-// 单链表创建,追加节点,删除节点,遍历,在指定位置
+// 单链表创建,追加节点,删除节点,遍历,在指定位置插入节点,获取指定位置node
 func TestSingleList(t *testing.T) {
 	list := linkedList.SingleList{}
 	for i := 0; i < 10; i++ {
@@ -66,5 +66,12 @@ func TestSingleList(t *testing.T) {
 	})
 
 	list.Iterate(f)
+
+	node, err := list.GetNode(45)
+	if err != nil {
+		t.Error(err)
+	} else {
+		t.Log(node)
+	}
 
 }

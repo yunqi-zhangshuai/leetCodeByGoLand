@@ -137,3 +137,17 @@ func (l *SingleList) Iterate(f func(curNode *SingleNode)) {
 		curNode = curNode.Next
 	}
 }
+
+func (l *SingleList) GetNode(sort uint32) (*SingleNode, error) {
+	var index uint32
+	cur := l.head
+
+	for cur != nil {
+		index++
+		if index == sort {
+			return cur, nil
+		}
+		cur = cur.Next
+	}
+	return nil, errors.New(fmt.Sprintf("不存在此节点 %d", sort))
+}
