@@ -1,7 +1,7 @@
 package linked_list_cycle
 
 import (
-	"leetCodeByGoLand/dataStructure/linkedList"
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
 )
 
 //给定一个链表，判断链表中是否有环。

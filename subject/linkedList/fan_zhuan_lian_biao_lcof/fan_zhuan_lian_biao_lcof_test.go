@@ -2,7 +2,7 @@ package fan_zhuan_lian_biao_lcof
 
 import (
 	"fmt"
-	"leetCodeByGoLand/dataStructure/linkedList"
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
 	"testing"
 )
 

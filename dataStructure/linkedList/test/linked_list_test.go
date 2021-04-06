@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetCodeByGoLand/dataStructure/linkedList"
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
 	"testing"
 )
 

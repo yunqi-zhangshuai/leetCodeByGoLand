@@ -1,7 +1,7 @@
 package linked_list_cycle
 
 import (
-	"leetCodeByGoLand/dataStructure/linkedList"
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
 	"testing"
 )
 

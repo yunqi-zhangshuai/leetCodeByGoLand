@@ -1,6 +1,8 @@
 package linkedList
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node2 struct {
 	Pre  *Node2      //上一个节点
