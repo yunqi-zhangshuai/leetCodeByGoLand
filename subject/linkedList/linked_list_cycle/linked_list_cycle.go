@@ -54,6 +54,16 @@ import (
 // hasCycleFastSlowPoint
 // 快慢指针
 func hasCycleFastSlowPoint(head *linkedList.SingleNode) bool {
+	fast, slow := head, head
+	var index uint32
+	for fast != nil && slow != nil {
+		index++
+		if fast == slow && index > 1 {
+			return true
+		}
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
 	return false
 }
 
