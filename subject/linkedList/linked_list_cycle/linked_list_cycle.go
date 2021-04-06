@@ -53,6 +53,11 @@ import (
 
 // hasCycleFastSlowPoint
 // 快慢指针
+// 1. 初始化 fast ， slow 两个指针
+// 2. 跳过头节点判断
+// 3. fast slow 不能为 nil
+// 4. fast 走两步，slow 走一步
+// 5. fast == slow 有环
 func hasCycleFastSlowPoint(head *linkedList.SingleNode) bool {
 	fast, slow := head, head
 	var index uint32
