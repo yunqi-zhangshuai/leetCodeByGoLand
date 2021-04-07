@@ -6,25 +6,33 @@ import (
 
 // DoubleNode  双向链表 node
 type DoubleNode struct {
-	Prev *DoubleNode //上一个节点
-	Next *DoubleNode //指向下一个节点
+	prev *DoubleNode //上一个节点
+	next *DoubleNode //指向下一个节点
 	Data interface{} //数据
 }
 
 // SetPrev
 // 设置前前趋节点
 func (d *DoubleNode) SetPrev(node *DoubleNode) {
-	d.Prev = node
+	d.prev = node
 }
 
 // SetNext
 // 设置后趋node
 func (d *DoubleNode) SetNext(node *DoubleNode) {
-	d.Next = node
+	d.next = node
+}
+
+func (d *DoubleNode) Next() *DoubleNode {
+	return d.next
+}
+
+func (d *DoubleNode) Prev() *DoubleNode {
+	return d.prev
 }
 
 func NewDoubleNode(pre, next *DoubleNode, data interface{}) *DoubleNode {
-	return &DoubleNode{Data: data, Prev: pre, Next: next}
+	return &DoubleNode{Data: data, prev: pre, next: next}
 }
 
 type DoubleList struct {
@@ -45,8 +53,8 @@ func (l *DoubleList) AppendNode(values ...interface{}) {
 	for _, value := range values {
 		node := NewDoubleNode(l.tail, nil, value)
 		tail := l.tail
-		tail.Next = node
-		node.Prev = tail
+		tail.next = node
+		node.prev = tail
 		l.tail = node
 
 		l.size++
@@ -59,7 +67,7 @@ func (l *DoubleList) Traverse() {
 		if cur.Data != nil {
 			fmt.Println("从头部遍历数据", cur.Data)
 		}
-		cur = cur.Next
+		cur = cur.next
 	}
 
 	fmt.Println("------分界线-----------")
@@ -68,25 +76,25 @@ func (l *DoubleList) Traverse() {
 		if cur.Data != nil {
 			fmt.Println("从尾部遍历数据", cur.Data)
 		}
-		cur = cur.Prev
+		cur = cur.prev
 	}
 }
 
 func (l *DoubleList) InsertNode(value interface{}, size int) {
 
 	cur := l.head
-	newNode := &DoubleNode{Data: value}
+	newNode := NewDoubleNode(nil, nil, value)
 
 	var csize = 0
-	for cur.Next != nil {
+	for cur.next != nil {
 		if csize == size {
-			newNode.Prev = cur
-			newNode.Next = cur.Next
-			cur.Next.Prev = newNode
+			newNode.SetPrev(cur)
+			newNode.SetNext(cur.Next())
+			cur.Next().SetPrev(newNode)
 			l.size++
 			break
 		}
-		cur = cur.Next
+		cur = cur.next
 		csize++
 	}
 
