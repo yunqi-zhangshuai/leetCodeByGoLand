@@ -4,66 +4,90 @@ import (
 	"fmt"
 )
 
-type Node2 struct {
-	Pre  *Node2      //上一个节点
-	Next *Node2      //指向下一个节点
+// DoubleNode  双向链表 node
+type DoubleNode struct {
+	Prev *DoubleNode //上一个节点
+	Next *DoubleNode //指向下一个节点
 	Data interface{} //数据
 }
 
-type Double struct {
-	head    *Node2 //头指针 //头指针不放数据
-	last    *Node2 //尾指针
-	size    int32  //链表长度
-	current *Node  //当前节点指针
+// SetPrev
+// 设置前前趋节点
+func (d *DoubleNode) SetPrev(node *DoubleNode) {
+	d.Prev = node
 }
 
-func (l *Double) AppendNode(values ...interface{}) {
-	element := &Node2{Pre: l.last}
+// SetNext
+// 设置后趋node
+func (d *DoubleNode) SetNext(node *DoubleNode) {
+	d.Next = node
+}
+
+func NewDoubleNode(pre, next *DoubleNode, data interface{}) *DoubleNode {
+	return &DoubleNode{Data: data, Prev: pre, Next: next}
+}
+
+type DoubleList struct {
+	head *DoubleNode //头指针 //头指针不放数据
+	tail *DoubleNode //尾指针
+	size int32       //链表长度
+}
+
+func (l *DoubleList) AppendNode(values ...interface{}) {
+
 	//头指针单独处理
 	if l.size <= 0 {
+		element := NewDoubleNode(nil, nil, nil)
+
 		l.head = element
-		l.last = element
+		l.tail = element
 	}
 	for _, value := range values {
-		node := &Node2{Data: value, Pre: l.last}
-		l.last.Next = node
-		l.last = node
+		node := NewDoubleNode(l.tail, nil, value)
+		l.tail.Next = node
+		l.tail = node
 
 		l.size++
 	}
 }
 
-func (l *Double) Traverse() {
+func (l *DoubleList) Traverse() {
 	cur := l.head
 	for cur.Next != nil {
 		cur = cur.Next
 		fmt.Println("从头部遍历数据", cur.Data)
 	}
 
-	cur = l.last
-	for cur.Pre != nil {
+	fmt.Println("------分界线-----------")
+	cur = l.tail
+	for cur.Prev != nil {
 		fmt.Println("从尾部遍历数据", cur.Data)
-		cur = cur.Pre
+		cur = cur.Prev
 	}
 }
 
-func (l *Double) InsertNode(value interface{}, size int) {
+func (l *DoubleList) InsertNode(value interface{}, size int) {
 
 	cur := l.head
-	newNode := &Node2{Data: value}
+	newNode := &DoubleNode{Data: value}
 
 	var csize = 0
 	for cur.Next != nil {
 		if csize == size {
-			newNode.Pre = cur
+			newNode.Prev = cur
 			newNode.Next = cur.Next
-			cur.Next.Pre = newNode
+			cur.Next.Prev = newNode
+			l.size++
 			break
 		}
-
 		cur = cur.Next
-
 		csize++
 	}
 
+}
+
+// NewDoubleList
+// 初始化双向链表
+func NewDoubleList() *DoubleList {
+	return &DoubleList{}
 }

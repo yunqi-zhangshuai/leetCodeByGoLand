@@ -57,7 +57,7 @@ func TestReverseListByRecursion(t *testing.T) {
 	list.BatchAppend(
 		linkedList.NewSingleNode("测试1"),
 		linkedList.NewSingleNode("测试2"),
-		//linkedList.NewSingleNode("测试3"),
+		linkedList.NewSingleNode("测试3"),
 	)
 
 	fmt.Println("-------原链表------")
