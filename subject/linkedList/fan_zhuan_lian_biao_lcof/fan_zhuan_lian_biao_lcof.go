@@ -39,11 +39,11 @@ func reverseListByArray(head *linkedList.Node) *linkedList.Node {
 		cur = cur.Next
 	}
 
-	node := nodes[4]
+	node := nodes[len(nodes)-1]
 	nodes[0].Next = nil
 	p := node
 
-	for i := 3; i >= 0; i-- {
+	for i := len(nodes) - 1; i >= 0; i-- {
 		p.Next = nodes[i]
 		p = p.Next
 	}
@@ -51,6 +51,9 @@ func reverseListByArray(head *linkedList.Node) *linkedList.Node {
 	return node
 }
 
+// 反转链表
+// 定义tmp 节点存储当前节点, pre 作为新的链表节点尾部
+//
 func reverseListIteration(head *linkedList.Node) *linkedList.Node {
 
 	cur := head
@@ -58,13 +61,26 @@ func reverseListIteration(head *linkedList.Node) *linkedList.Node {
 
 	for cur != nil {
 
-		tmp = cur.Next //  tmp = 4
-
-		cur.Next = pre //  cur.next = 2
-
-		pre = cur //  pre = 4
+		// 存储当前节点的后趋势
+		tmp = cur.Next
+		// 当前node 后趋赋值nil,(第一次循环)
+		cur.Next = pre
+		// 新的链表pre赋值
+		pre = cur
+		// 重置当前node 为临时存储的cur.next
 		cur = tmp //  cur = 4
 	}
 
 	return pre
+}
+
+// 递归法 反转链表
+func reverseListByRecursion(head *linkedList.SingleNode) *linkedList.SingleNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	ret := reverseListByRecursion(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return ret
 }

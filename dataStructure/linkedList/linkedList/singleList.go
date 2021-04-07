@@ -151,3 +151,13 @@ func (l *SingleList) GetNode(sort uint32) (*SingleNode, error) {
 	}
 	return nil, errors.New(fmt.Sprintf("不存在此节点 %d", sort))
 }
+
+func (l *SingleList) Traverse(head *SingleNode, f func(node *SingleNode)) {
+	cur := head
+	for cur != nil {
+		if f != nil {
+			f(cur)
+		}
+		cur = cur.Next
+	}
+}

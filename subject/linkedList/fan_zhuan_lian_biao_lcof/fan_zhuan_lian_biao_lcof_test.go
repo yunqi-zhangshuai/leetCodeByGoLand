@@ -49,3 +49,28 @@ func TestByArray(t *testing.T) {
 
 	list.Traverse(p)
 }
+
+// 递归法反转链表
+func TestReverseListByRecursion(t *testing.T) {
+	// 构建链表
+	list := linkedList.SingleList{}
+	list.BatchAppend(
+		linkedList.NewSingleNode("测试1"),
+		linkedList.NewSingleNode("测试2"),
+		//linkedList.NewSingleNode("测试3"),
+	)
+
+	fmt.Println("-------原链表------")
+	f := func(curNode *linkedList.SingleNode) {
+		fmt.Println(curNode.Item)
+	}
+	list.Iterate(f)
+
+	// 递归
+	nodeHead := reverseListByRecursion(list.GetHead())
+	fmt.Println("----反转后链表-----")
+	list.Traverse(nodeHead, func(node *linkedList.SingleNode) {
+		fmt.Println(node.Item)
+	})
+
+}
