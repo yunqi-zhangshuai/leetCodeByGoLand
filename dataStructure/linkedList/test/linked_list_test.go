@@ -11,7 +11,6 @@ func TestSinglyLinkList(t *testing.T) {
 
 }
 func TestDoubleLinkList(t *testing.T) {
-	//单向链表实现操作
 	//双向链表实现操作
 	double := linkedList.DoubleList{}
 	double.AppendNode(1, 3, 4, 5, 6, 7)

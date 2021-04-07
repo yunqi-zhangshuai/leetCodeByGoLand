@@ -44,7 +44,9 @@ func (l *DoubleList) AppendNode(values ...interface{}) {
 	}
 	for _, value := range values {
 		node := NewDoubleNode(l.tail, nil, value)
-		l.tail.Next = node
+		tail := l.tail
+		tail.Next = node
+		node.Prev = tail
 		l.tail = node
 
 		l.size++
@@ -53,15 +55,19 @@ func (l *DoubleList) AppendNode(values ...interface{}) {
 
 func (l *DoubleList) Traverse() {
 	cur := l.head
-	for cur.Next != nil {
+	for cur != nil {
+		if cur.Data != nil {
+			fmt.Println("从头部遍历数据", cur.Data)
+		}
 		cur = cur.Next
-		fmt.Println("从头部遍历数据", cur.Data)
 	}
 
 	fmt.Println("------分界线-----------")
 	cur = l.tail
-	for cur.Prev != nil {
-		fmt.Println("从尾部遍历数据", cur.Data)
+	for cur != nil {
+		if cur.Data != nil {
+			fmt.Println("从尾部遍历数据", cur.Data)
+		}
 		cur = cur.Prev
 	}
 }
