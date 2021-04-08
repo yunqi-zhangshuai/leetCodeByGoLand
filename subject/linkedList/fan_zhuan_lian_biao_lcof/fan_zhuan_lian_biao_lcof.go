@@ -31,9 +31,9 @@ import (
  */
 
 // 数组法反转链表,将链表遍历放到数组里,然后倒序遍历数组,串联链表
-func reverseListByArray(head *linkedList.Node) *linkedList.Node {
+func reverseListByArray(head *linkedList.SingleNode) *linkedList.SingleNode {
 	cur := head
-	nodes := make([]*linkedList.Node, 0)
+	nodes := make([]*linkedList.SingleNode, 0)
 	for cur != nil {
 		nodes = append(nodes, cur)
 		cur = cur.Next
@@ -54,10 +54,10 @@ func reverseListByArray(head *linkedList.Node) *linkedList.Node {
 // 反转链表
 // 定义tmp 节点存储当前节点, pre 作为新的链表节点尾部
 //
-func reverseListIteration(head *linkedList.Node) *linkedList.Node {
+func reverseListIteration(head *linkedList.SingleNode) *linkedList.SingleNode {
 
 	cur := head
-	var pre, tmp *linkedList.Node
+	var pre, tmp *linkedList.SingleNode
 
 	for cur != nil {
 
