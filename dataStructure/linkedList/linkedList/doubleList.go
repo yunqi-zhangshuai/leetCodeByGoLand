@@ -35,6 +35,10 @@ func NewDoubleNode(pre, next *DoubleNode, data interface{}) *DoubleNode {
 	return &DoubleNode{Data: data, prev: pre, next: next}
 }
 
+/*---------------------------------------------------------*/
+
+// DoubleList
+// 双向链表
 type DoubleList struct {
 	head *DoubleNode //头指针 //头指针不放数据
 	tail *DoubleNode //尾指针

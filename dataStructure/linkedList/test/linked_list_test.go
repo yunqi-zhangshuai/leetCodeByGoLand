@@ -18,7 +18,7 @@ func TestDoubleLinkList(t *testing.T) {
 func TestSingleList(t *testing.T) {
 	list := linkedList.SingleList{}
 	for i := 0; i < 10; i++ {
-		list.addAtHead(linkedList.NewSingleNode(i))
+		list.AddAtHead(linkedList.NewSingleNode(i))
 	}
 
 	f := func(curNode *linkedList.SingleNode) {
@@ -34,7 +34,7 @@ func TestSingleList(t *testing.T) {
 
 	fmt.Printf("删除%d节点\n", position)
 	list.Iterate(f)
-	fmt.Println("链表尾节点-----", list.GetTail().Item)
+	fmt.Println("链表尾节点-----", list.GetTail())
 
 	// 指定位置插入节点
 	fmt.Println("-------指定在第三节点位置插入数据------")
