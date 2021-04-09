@@ -76,9 +76,9 @@ func (l *SingleList) DeleteAtIndex(position uint32) (bool, error) {
 	var index uint32
 	for curNode != nil {
 		index++
-		if index == position {
-			tmpNext := curNode.Next
-			curNode.Next = tmpNext.Next
+		if index == position-1 {
+			tmpNext := curNode.Next.Next
+			curNode.Next = tmpNext
 			tmpNext = nil
 			l.size--
 			break
@@ -101,9 +101,9 @@ func (l *SingleList) AddAtIndex(sort uint32, node *SingleNode) (bool, error) {
 	for cur != nil {
 		index++
 		if index == sort {
-			tmpNext := cur.Next.Next
+			tmpNext := cur.Next
+			node.Next = tmpNext
 			cur.Next = node
-			cur.Next.Next = tmpNext
 			l.size++
 			return true, nil
 		}
@@ -171,8 +171,4 @@ func (l *SingleList) AddAtHead(node *SingleNode) {
 	node.Next = cur
 	l.head = node
 	l.size++
-}
-
-func (l *SingleList) name() {
-
 }
