@@ -4,6 +4,8 @@
 
 ### [数组](dataStructure/array)
 
+-[顺序表](dataStructure/array/sequenceList.go)
+
 
 ### [链表](dataStructure/linkedList)
 
