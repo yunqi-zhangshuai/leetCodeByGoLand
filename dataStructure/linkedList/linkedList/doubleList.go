@@ -2,6 +2,7 @@ package linkedList
 
 import (
 	"fmt"
+	"runtime"
 )
 
 // DoubleNode  双向链表 node
@@ -84,14 +85,14 @@ func (l *DoubleList) Traverse() {
 	}
 }
 
-func (l *DoubleList) InsertNode(value interface{}, size int) {
+func (l *DoubleList) AddAtIndex(value interface{}, index int) {
 
 	cur := l.head
 	newNode := NewDoubleNode(nil, nil, value)
 
-	var csize = 0
+	var sort = 0
 	for cur.next != nil {
-		if csize == size {
+		if sort == index {
 			newNode.SetPrev(cur)
 			newNode.SetNext(cur.Next())
 			cur.Next().SetPrev(newNode)
@@ -99,9 +100,31 @@ func (l *DoubleList) InsertNode(value interface{}, size int) {
 			break
 		}
 		cur = cur.next
-		csize++
+		sort++
 	}
 
+}
+
+// IsEmpty
+// 判断链表是否为空
+func (l *DoubleList) IsEmpty() bool {
+	return l.head.next == nil
+}
+
+// Size
+// 链表长度
+func (l *DoubleList) Size() int32 {
+	return l.size
+
+}
+
+// Clear
+// 删除链表
+func (l *DoubleList) Clear() {
+	l.head = nil
+	l.tail = nil
+	l.size = 0
+	runtime.GC()
 }
 
 // NewDoubleList

@@ -1,5 +1,6 @@
 package linkedList
 
 type List interface {
-	Length() uint32
+	Size() int32
+	Clear()
 }

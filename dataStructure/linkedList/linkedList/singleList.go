@@ -113,9 +113,9 @@ func (l *SingleList) AddAtIndex(sort uint32, node *SingleNode) (bool, error) {
 	return true, nil
 }
 
-// Length
+// Size
 // 获取链表长度
-func (l *SingleList) Length() uint32 {
+func (l *SingleList) Size() uint32 {
 	return l.size
 }
 
