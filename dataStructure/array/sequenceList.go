@@ -45,6 +45,7 @@ func (s *SequenceList) AddAtHead(item interface{}) {
 		s.items[i] = s.items[i-1]
 	}
 	s.items[0] = item
+	s.size++
 
 }
 
@@ -56,6 +57,15 @@ func (s *SequenceList) AddAtTail(items ...interface{}) {
 // AddAtIndex
 // 指定位置添加元素
 func (s *SequenceList) AddAtIndex(item interface{}, index int) (bool, error) {
+
+	if index < 0 || index > s.size {
+		return false, fmt.Errorf("%d index 越界", index)
+	}
+
+	for i := s.size + 1; i < index+1; i-- {
+		s.items[i] = s.items[i-1]
+	}
+	s.items[index] = item
 
 	return true, nil
 }

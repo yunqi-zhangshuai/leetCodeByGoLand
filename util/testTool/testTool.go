@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	Equal int = 1 + iota
+	Equal int = iota
 	NotEqual
 	AlmostEqual
 	NotAlmostEqual
@@ -69,7 +69,7 @@ const (
 	BeError
 )
 
-var methodMap = []func(actual interface{}, expected ...interface{}) string{
+var assertionArray = [...]func(actual interface{}, expected ...interface{}) string{
 	Equal: should.Equal,
 	should.NotEqual,
 	should.AlmostEqual,
@@ -129,24 +129,41 @@ var methodMap = []func(actual interface{}, expected ...interface{}) string{
 	should.NotHappenWithin,
 	should.BeChronological,
 
-	should.BeError,
+	BeError: should.BeError,
 }
 
 func Test(t *testing.T, actual interface{}, assertion int, expected ...interface{}) {
-
 	Convey("test", t, func() {
-		So(actual, methodMap[assertion], expected...)
+		So(actual, assertionArray[assertion], expected...)
 	})
 }
 
 func EqualTest(t *testing.T, actual interface{}, expected ...interface{}) {
 	Convey("testassssss", t, func() {
-		So(actual, methodMap[Equal], expected...)
+		So(actual, assertionArray[Equal], expected...)
 	})
 }
 
 func NotEqualTest(t *testing.T, actual interface{}, expected ...interface{}) {
 	Convey("test", t, func() {
-		So(actual, methodMap[NotEqual], expected...)
+		So(actual, assertionArray[NotEqual], expected...)
+	})
+}
+
+func BeTrueTest(t *testing.T, actual interface{}, expected ...interface{}) {
+	Convey("test", t, func() {
+		So(actual, assertionArray[BeTrue], expected...)
+	})
+}
+
+func BeFalseTest(t *testing.T, actual interface{}, expected ...interface{}) {
+	Convey("test", t, func() {
+		So(actual, assertionArray[BeFalse], expected...)
+	})
+}
+
+func BeBetweenTest(t *testing.T, actual interface{}, expected ...interface{}) {
+	Convey("test", t, func() {
+		So(actual, assertionArray[BeBetween], expected...)
 	})
 }
