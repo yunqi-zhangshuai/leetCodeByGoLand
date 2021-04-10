@@ -50,4 +50,9 @@ func TestDeleteAtIndex(t *testing.T) {
 	testTool.EqualTest(t, item1, 6)
 	testTool.Test(t, err, testTool.BeNil)
 
+	list.DeleteAtIndex(1)
+
+	first, _ := list.GetByIndex(1)
+	testTool.EqualTest(t, first, 6)
+
 }

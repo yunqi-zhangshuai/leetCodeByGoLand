@@ -100,3 +100,7 @@ func (s *SequenceList) DeleteAtIndex(index int) (bool, error) {
 	s.size--
 	return true, nil
 }
+
+func (s *SequenceList) Size() int {
+	return s.size
+}
