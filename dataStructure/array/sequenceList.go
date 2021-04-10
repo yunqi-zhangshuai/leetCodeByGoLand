@@ -9,6 +9,8 @@ import (
 type SequenceList struct {
 	items []interface{}
 	size  int
+	// 标记删除
+	deleted map[int]struct{}
 }
 
 // NewSequenceList
@@ -49,6 +51,8 @@ func (s *SequenceList) AddAtHead(item interface{}) {
 
 }
 
+// AddAtTail
+// 添加到尾部
 func (s *SequenceList) AddAtTail(items ...interface{}) {
 	s.items = append(s.items, items...)
 	s.size += len(items)
@@ -62,20 +66,37 @@ func (s *SequenceList) AddAtIndex(item interface{}, index int) (bool, error) {
 		return false, fmt.Errorf("%d index 越界", index)
 	}
 
-	for i := s.size + 1; i < index+1; i-- {
+	for i := s.size; i < index; i-- {
 		s.items[i] = s.items[i-1]
 	}
-	s.items[index] = item
+	s.items[index-1] = item
+	s.size++
 
 	return true, nil
 }
 
 // GetByIndex
 // 获取一个元素
-func (s SequenceList) GetByIndex(index int) (interface{}, error) {
+func (s *SequenceList) GetByIndex(index int) (interface{}, error) {
 
 	if index < 0 || index > s.size {
 		return nil, fmt.Errorf("%d index 存在 ", index)
 	}
-	return s.items[index], nil
+	return s.items[index-1], nil
+}
+
+// DeleteAtIndex
+// 指定位置删除
+func (s *SequenceList) DeleteAtIndex(index int) (bool, error) {
+
+	if index < 1 || index > s.size {
+		return false, fmt.Errorf("%d index 不存在", index)
+	}
+
+	// 搬迁数据
+	for i := index - 1; i < s.size-1; i++ {
+		s.items[i] = s.items[i+1]
+	}
+	s.size--
+	return true, nil
 }
