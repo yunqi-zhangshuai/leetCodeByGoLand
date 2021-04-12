@@ -139,31 +139,37 @@ func Test(t *testing.T, actual interface{}, assertion int, expected ...interface
 }
 
 func EqualTest(t *testing.T, actual interface{}, expected ...interface{}) {
-	Convey("testassssss", t, func() {
+	Convey("testEqual", t, func() {
 		So(actual, assertionArray[Equal], expected...)
 	})
 }
 
 func NotEqualTest(t *testing.T, actual interface{}, expected ...interface{}) {
-	Convey("test", t, func() {
+	Convey("testNotEqual", t, func() {
 		So(actual, assertionArray[NotEqual], expected...)
 	})
 }
 
 func BeTrueTest(t *testing.T, actual interface{}, expected ...interface{}) {
-	Convey("test", t, func() {
+	Convey("testBeTrue", t, func() {
 		So(actual, assertionArray[BeTrue], expected...)
 	})
 }
 
 func BeFalseTest(t *testing.T, actual interface{}, expected ...interface{}) {
-	Convey("test", t, func() {
+	Convey("testBeFalse", t, func() {
 		So(actual, assertionArray[BeFalse], expected...)
 	})
 }
 
 func BeBetweenTest(t *testing.T, actual interface{}, expected ...interface{}) {
-	Convey("test", t, func() {
+	Convey("testBeBetween", t, func() {
 		So(actual, assertionArray[BeBetween], expected...)
+	})
+}
+
+func BeLessThanTest(t *testing.T, actual interface{}, expected ...interface{}) {
+	Convey("testBeLessThan", t, func() {
+		So(actual, assertionArray[BeLessThan], expected...)
 	})
 }
