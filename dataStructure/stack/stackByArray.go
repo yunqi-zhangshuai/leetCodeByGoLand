@@ -3,12 +3,12 @@ package stack
 import "leetCodeByGoLand/dataStructure/linkedList/linkedList"
 
 type ListStack struct {
-	item linkedList.SingleList
+	item *linkedList.SingleList
 	top  *linkedList.SingleNode
 }
 
 func NewListStack() *ListStack {
-	return &ListStack{}
+	return &ListStack{item: linkedList.NewSingleList()}
 }
 
 func (ls *ListStack) Push() {

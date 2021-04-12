@@ -28,6 +28,12 @@ type SingleList struct {
 	size       uint32
 }
 
+// NewSingleList
+// 初始化一条链表
+func NewSingleList() *SingleList {
+	return &SingleList{}
+}
+
 // AddAtTail
 // 在链表尾部添加节点
 func (l *SingleList) AddAtTail(node *SingleNode) {
