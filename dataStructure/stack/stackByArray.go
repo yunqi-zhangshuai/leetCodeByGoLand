@@ -1,25 +1,52 @@
 package stack
 
-import "leetCodeByGoLand/dataStructure/linkedList/linkedList"
+import (
+	"errors"
+)
 
-type ListStack struct {
-	item *linkedList.SingleList
-	top  *linkedList.SingleNode
+type ArrayStack struct {
+	items  []interface{}
+	top    int
+	bottom int
 }
 
-func NewListStack() *ListStack {
-	return &ListStack{item: linkedList.NewSingleList()}
+func NewArrayStack() *ArrayStack {
+	return &ArrayStack{
+		items:  make([]interface{}, 0),
+		bottom: -1,
+	}
 }
 
-func (ls *ListStack) Push() {
-
+// Push
+// 推入元素
+func (as *ArrayStack) Push(val interface{}) {
+	as.items = append(as.items, val)
+	as.topIncr()
 }
 
-func (ls *ListStack) Pop() {
-
+// Pop
+// 弹出数据
+func (as *ArrayStack) Pop() (interface{}, error) {
+	if as.IsEmpty() {
+		return nil, errors.New("stack is empty")
+	}
+	index := as.top
+	defer as.topDecr()
+	return as.items[index-1], nil
 }
 
-func (ls *ListStack) Empty() bool {
+// IsEmpty
+// 是否为空
+func (as *ArrayStack) IsEmpty() bool {
+	return as.top <= as.bottom
+}
 
-	return true
+// topIncr
+func (as *ArrayStack) topIncr() {
+	as.top++
+}
+
+// topDecr
+func (as *ArrayStack) topDecr() {
+	as.top--
 }

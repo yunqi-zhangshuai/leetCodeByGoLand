@@ -2,49 +2,35 @@ package stack
 
 import (
 	"errors"
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
 )
 
-type ArrayStack struct {
-	items  []interface{}
-	top    int
-	bottom int
+type ListStack struct {
+	items  *linkedList.SingleList
+	top    *linkedList.SingleNode
+	bottom *linkedList.DoubleNode
 }
 
-func NewArrayStack() *ArrayStack {
-	return &ArrayStack{
-		items:  make([]interface{}, 0),
-		bottom: -1,
-	}
+func NewListStack() *ListStack {
+	return &ListStack{items: linkedList.NewSingleList()}
 }
 
-// Push
-// 推入元素
-func (as *ArrayStack) Push(val interface{}) {
-	as.items = append(as.items, val)
-	as.topIncr()
+func (ls *ListStack) Push(value interface{}) {
+	ls.items.AddAtTail(linkedList.NewSingleNode(value))
+	ls.top = ls.items.GetHead()
 }
 
-// Pop
-// 弹出数据
-func (as *ArrayStack) Pop() (interface{}, error) {
-	if as.IsEmpty() {
+func (ls *ListStack) Pop() (interface{}, error) {
+
+	if ls.Empty() {
 		return nil, errors.New("stack is empty")
 	}
-	index := as.top
-	defer as.topDecr()
-	return as.items[index], nil
+
+	tmpPop := ls.top
+	ls.top = tmpPop.Next
+	return tmpPop.Item, nil
 }
 
-// IsEmpty
-// 是否为空
-func (as *ArrayStack) IsEmpty() bool {
-	return as.top <= as.bottom
-}
-
-func (as *ArrayStack) topIncr() {
-	as.top++
-}
-
-func (as ArrayStack) topDecr() {
-	as.top--
+func (ls *ListStack) Empty() bool {
+	return ls.bottom.Next() == nil
 }
