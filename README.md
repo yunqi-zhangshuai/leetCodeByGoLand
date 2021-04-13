@@ -4,13 +4,22 @@
 
 ### [数组](dataStructure/array)
 
--[顺序表](dataStructure/array/sequenceList.go)
+- [顺序表](dataStructure/array/sequenceList.go)
 
 
 ### [链表](dataStructure/linkedList)
 
 - [单链表](dataStructure/linkedList/singly.go)
 - [双向链表](dataStructure/linkedList/double.go)
+
+### [栈](dataStructure/stack)
+- [数组栈](dataStructure/stack/stackByArray.go)
+- [单链表栈](dataStructure/stack/stackByLinkedList.go)
+
+### [队列](dataStructure/queue)
+
+- [数组队列](dataStructure/queue/arrayQueue.go)
+
 
 ## 算法练习
 

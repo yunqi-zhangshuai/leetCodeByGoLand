@@ -4,6 +4,8 @@ import (
 	"errors"
 )
 
+// ArrayStack
+// 数组实现栈
 type ArrayStack struct {
 	items  []interface{}
 	top    int
