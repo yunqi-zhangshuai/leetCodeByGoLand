@@ -7,17 +7,20 @@ import (
 )
 
 var (
-	list = linkedList.SinglyLinkList{}
-	head *linkedList.Node
+	list = linkedList.SingleList{}
+	head *linkedList.SingleNode
+	f    = func(node *linkedList.SingleNode) {
+		fmt.Println(node.Item)
+	}
 )
 
 func init() {
 	for i := 0; i < 5; i++ {
-		node := &linkedList.Node{Data: i}
+		node := &linkedList.SingleNode{Item: i}
 		if head == nil {
 			head = node // 注释
 		}
-		list.Append(node)
+		list.AddAtTail(node)
 	}
 }
 
@@ -26,10 +29,11 @@ func TestIteration(t *testing.T) {
 
 	fmt.Println("-------迭代法反转链表-------")
 	// 原链表
-	list.Traverse(head)
+
+	list.Traverse(head, f)
 	fmt.Println("---------反转后--------")
 	// 反转后
-	list.Traverse(reverseListIteration(head))
+	list.Traverse(reverseListIteration(head), f)
 }
 
 // 反转链表 数组法
@@ -40,14 +44,14 @@ func TestByArray(t *testing.T) {
 	fmt.Println("-原链表-")
 	fmt.Println()
 
-	list.Traverse(head)
+	list.Traverse(head, f)
 	p := reverseListByArray(head)
 
 	fmt.Println()
 	fmt.Println("-反转后链表-")
 	fmt.Println()
 
-	list.Traverse(p)
+	list.Traverse(p, f)
 }
 
 // 递归法反转链表
@@ -61,16 +65,12 @@ func TestReverseListByRecursion(t *testing.T) {
 	)
 
 	fmt.Println("-------原链表------")
-	f := func(curNode *linkedList.SingleNode) {
-		fmt.Println(curNode.Item)
-	}
+
 	list.Iterate(f)
 
 	// 递归
 	nodeHead := reverseListByRecursion(list.GetHead())
 	fmt.Println("----反转后链表-----")
-	list.Traverse(nodeHead, func(node *linkedList.SingleNode) {
-		fmt.Println(node.Item)
-	})
+	list.Traverse(nodeHead, f)
 
 }
