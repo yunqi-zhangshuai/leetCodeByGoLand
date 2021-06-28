@@ -31,6 +31,7 @@
 
 - [反转单链表](subject/linkedList/fan_zhuan_lian_biao_lcof/fan_zhuan_lian_biao_lcof.go)
 - [判断链表是否有环](subject/linkedList/linked_list_cycle/linked_list_cycle.go)
+- [合并两个有序链表](subject/linkedList/merge_two_sort_list/merge_two_sort_list.go)
 
 ### [字符串](subject/string)
 
