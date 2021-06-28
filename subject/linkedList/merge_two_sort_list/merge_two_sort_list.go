@@ -1,6 +1,8 @@
 package merge_two_sort_list
 
-import "leetCodeByGoLand/dataStructure/linkedList/linkedList"
+import (
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
+)
 
 // 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
 //
@@ -49,4 +51,30 @@ func MergeTwoLists(l1 *linkedList.SingleNode, l2 *linkedList.SingleNode) *linked
 		l2.Next = MergeTwoLists(l1, l2.Next)
 		return l2
 	}
+}
+
+// MergeTwoListsIterate
+// 迭代合并链表
+func MergeTwoListsIterate(l1 *linkedList.SingleNode, l2 *linkedList.SingleNode) *linkedList.SingleNode {
+	node := linkedList.NewSingleNode(nil)
+	head := node
+	for l1 != nil && l2 != nil {
+		if l1.Item.(int) < l2.Item.(int) {
+			head.Next = l1
+			l1 = l1.Next
+		} else {
+			head.Next = l2
+			l2 = l2.Next
+		}
+		head = head.Next
+	}
+
+	if l1 != nil {
+		head.Next = l1
+	}
+
+	if l2 != nil {
+		head.Next = l2
+	}
+	return node.Next
 }
