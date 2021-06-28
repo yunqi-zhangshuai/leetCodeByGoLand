@@ -52,3 +52,24 @@ func TestSingleList(t *testing.T) {
 	}
 
 }
+
+// 递归遍历链表
+func TestTravelByRecursion(t *testing.T) {
+	list := linkedList.SingleList{}
+	list.BatchAppend(
+		linkedList.NewSingleNode(1),
+		linkedList.NewSingleNode(2),
+		linkedList.NewSingleNode(3),
+	)
+
+	Recursion(list.GetHead())
+
+}
+
+func Recursion(head *linkedList.SingleNode) {
+	if head == nil {
+		return
+	}
+	fmt.Println(head.Item)
+	Recursion(head.Next)
+}
