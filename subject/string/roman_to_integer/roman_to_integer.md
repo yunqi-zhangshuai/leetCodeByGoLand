@@ -73,3 +73,61 @@ M             1000
 *   题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。
 *   IL 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。
 *   关于罗马数字的详尽书写规则，可以参考 [罗马数字 - Mathematics](https://b2b.partcommunity.com/community/knowledge/zh_CN/detail/10753/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97#knowledge_article) 。
+
+
+---
+> 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [leetcode-cn.com](https://leetcode-cn.com/problems/roman-to-integer/solution/yong-shi-9993nei-cun-9873jian-dan-jie-fa-by-donesp/)
+
+> 题解
+
+按照题目的描述，可以总结如下规则：
+
+1.  罗马数字由 `I,V,X,L,C,D,M` 构成；
+2.  当小值在大值的左边，则减小值，如 `IV=5-1=4`；
+3.  当小值在大值的右边，则加小值，如 `VI=5+1=6`；
+4.  由上可知，右值永远为正，因此最后一位必然为正。
+
+一言蔽之，**把一个小值放在大值的左边，就是做减法，否则为加法**。
+
+![Screen Shot 2020-02-17 at 21.14.47.png](https://pic.leetcode-cn.com/9d092fd44be4a809487a326dd6e9adcdddb1b27b6f5ec02ce60651745ff43528-Screen%20Shot%202020-02-17%20at%2021.14.47.png)
+
+在代码实现上，可以往后看多一位，对比当前位与后一位的大小关系，从而确定当前位是加还是减法。当没有下一位时，做加法即可。
+
+也可保留当前位的值，当遍历到下一位的时，对比保留值与遍历位的大小关系，再确定保留值为加还是减。最后一位做加法即可。
+
+*   Java
+
+```
+`import java.util.*;
+
+class Solution {
+    public int romanToInt(String s) {
+        int sum = 0;
+        int preNum = getValue(s.charAt(0));
+        for(int i = 1;i < s.length(); i ++) {
+            int num = getValue(s.charAt(i));
+            if(preNum < num) {
+                sum -= preNum;
+            } else {
+                sum += preNum;
+            }
+            preNum = num;
+        }
+        sum += preNum;
+        return sum;
+    }
+    
+    private int getValue(char ch) {
+        switch(ch) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default: return 0;
+        }
+    }
+}` 
+```
