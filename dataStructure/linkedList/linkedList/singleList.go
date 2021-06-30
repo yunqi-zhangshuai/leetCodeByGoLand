@@ -33,7 +33,7 @@ type SingleList struct {
 func NewSingleList(values ...interface{}) *SingleList {
 	l := &SingleList{}
 	if len(values) > 0 {
-		l.BatchAppendValues(values)
+		l.BatchAppendValues(values...)
 	}
 	return l
 }

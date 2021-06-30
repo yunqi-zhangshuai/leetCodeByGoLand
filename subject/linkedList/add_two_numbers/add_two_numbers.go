@@ -1,6 +1,8 @@
 package add_two_numbers
 
-import "leetCodeByGoLand/dataStructure/linkedList/linkedList"
+import (
+	"leetCodeByGoLand/dataStructure/linkedList/linkedList"
+)
 
 //给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
 //
@@ -38,10 +40,30 @@ import "leetCodeByGoLand/dataStructure/linkedList/linkedList"
 
 // addTwoNumbers
 func addTwoNumbers(l1 *linkedList.SingleNode, l2 *linkedList.SingleNode) *linkedList.SingleNode {
+	var num1, num2 int
 
+	newList := linkedList.NewSingleList()
+	carry := 0
 	for l1 != nil || l2 != nil {
+		if l1 != nil {
+			num1 = l1.Item.(int)
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			num2 = l2.Item.(int)
+			l2 = l2.Next
+		}
 
+		sum := num1 + num2 + carry
+
+		sum, carry = sum%10, sum/10
+		newList.AddAtTail(linkedList.NewSingleNode(sum))
 	}
-	return nil
+
+	if carry > 0 {
+		newList.AddAtTail(linkedList.NewSingleNode(carry))
+	}
+
+	return newList.GetHead()
 
 }
