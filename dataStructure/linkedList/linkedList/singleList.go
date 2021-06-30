@@ -30,8 +30,12 @@ type SingleList struct {
 
 // NewSingleList
 // 初始化一条链表
-func NewSingleList() *SingleList {
-	return &SingleList{}
+func NewSingleList(values ...interface{}) *SingleList {
+	l := &SingleList{}
+	if len(values) > 0 {
+		l.BatchAppendValues(values)
+	}
+	return l
 }
 
 // AddAtTail
@@ -127,10 +131,11 @@ func (l *SingleList) Size() uint32 {
 
 // BatchAppend
 // 批量追加链表节点
-func (l *SingleList) BatchAppend(nodes ...*SingleNode) {
+func (l *SingleList) BatchAppend(nodes ...*SingleNode) *SingleList {
 	for _, node := range nodes {
 		l.AddAtTail(node)
 	}
+	return l
 }
 
 // Iterate
@@ -177,4 +182,12 @@ func (l *SingleList) AddAtHead(node *SingleNode) {
 	node.Next = cur
 	l.head = node
 	l.size++
+}
+
+func (l *SingleList) BatchAppendValues(values ...interface{}) *SingleList {
+	for _, value := range values {
+		l.AddAtTail(NewSingleNode(value))
+	}
+
+	return l
 }
